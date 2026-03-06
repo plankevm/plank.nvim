@@ -1,8 +1,8 @@
 # plank.nvim
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/plankevm/plank.nvim/blob/main/LICENSE)
-[![language]][lua]
-[![editor]][neovim]
+[![Language]][lua]
+[![Editor]][neovim]
 
 Plugin that adds file type & syntax highlighting support for the
 [plank](https://plankevm.github.io) language to neovim.
