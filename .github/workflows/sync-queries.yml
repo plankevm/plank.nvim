@@ -1,0 +1,30 @@
+name: Sync queries from monorepo
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch highlights.scm from monorepo
+        run: |
+          mkdir -p queries/plank
+          curl -fSL \
+            "https://raw.githubusercontent.com/plankevm/plank-monorepo/main/plank-tree-sitter/queries/highlights.scm" \
+            -o queries/plank/highlights.scm
+
+      - name: Commit if changed
+        run: |
+          git diff --quiet queries/ && echo "No changes" && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add queries/
+          git commit -m "sync: update highlights.scm from monorepo"
+          git push
