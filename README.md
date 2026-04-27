@@ -16,6 +16,7 @@ Plugin that adds file type & syntax highlighting support for the
 {
   "plankevm/plank.nvim",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  build = ":TSInstall plank",
 }
 ```
 

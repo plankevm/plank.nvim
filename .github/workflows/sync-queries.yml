@@ -13,12 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch highlights.scm from monorepo
+      - name: Fetch .scm queries from monorepo
         run: |
           mkdir -p queries/plank
           curl -fSL \
             "https://raw.githubusercontent.com/plankevm/plank-monorepo/main/plank-tree-sitter/queries/highlights.scm" \
             -o queries/plank/highlights.scm
+          curl -fSL \
+            "https://raw.githubusercontent.com/plankevm/plank-monorepo/main/plank-tree-sitter/queries/brackets.scm" \
+            -o queries/plank/brackets.scm
+          curl -fSL \
+            "https://raw.githubusercontent.com/plankevm/plank-monorepo/main/plank-tree-sitter/queries/indents.scm" \
+            -o queries/plank/indents.scm
 
       - name: Commit if changed
         run: |
